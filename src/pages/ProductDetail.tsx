@@ -63,7 +63,7 @@ const ProductDetail: React.FC<Props> = () => {
 
       if (exist) setExistingCartItem(exist)
     }
-  }, [cart])
+  }, [cart, params.productId])
 
   useEffect(() => {
     if (addToCartError) alert(addToCartError.message)

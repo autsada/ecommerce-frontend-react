@@ -1,4 +1,4 @@
-import React, { useRef, ChangeEvent, useState, useEffect } from 'react'
+import React, { useRef, ChangeEvent, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import Input from '../../../components/Input'
@@ -25,7 +25,6 @@ const AddProductForm: React.FC<Props> = ({
     register,
     handleSubmit,
     formState: { errors },
-    reset,
   } = useForm<
     Pick<
       Product,
@@ -40,9 +39,11 @@ const AddProductForm: React.FC<Props> = ({
 
   const [image, setImage] = useState<File | undefined>()
 
-  const { mutate: addProduct, isLoading, error } = useAddProduct(
-    setOpenProductForm
-  )
+  const {
+    mutate: addProduct,
+    isLoading,
+    error,
+  } = useAddProduct(setOpenProductForm)
   const {
     mutate: updateProduct,
     isLoading: updateProductLoading,
@@ -116,15 +117,6 @@ const AddProductForm: React.FC<Props> = ({
     formData.append('category', data.category)
     formData.append('inventory', `${data.inventory}`)
     if (image) formData.append('image', image)
-
-    // if (title !== data.title) formData.append('title', data.title)
-    // if (description !== data.description)
-    //   formData.append('description', data.description)
-    // if (price !== +data.price) formData.append('price', `${data.price}`)
-    // if (category !== data.category) formData.append('category', data.category)
-    // if (inventory !== +data.inventory)
-    //   formData.append('inventory', `${data.inventory}`)
-    // if (image) formData.append('image_url', image)
 
     return updateProduct({ data: formData, productId: id })
   })

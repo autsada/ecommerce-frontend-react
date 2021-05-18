@@ -33,7 +33,7 @@ const AddAndEditAddress: React.FC<Props> = ({
 
   useEffect(() => {
     if (addressToEdit) reset()
-  }, [addressToEdit])
+  }, [addressToEdit, reset])
 
   const handleAddNewAddress = handleSubmit((data) => addAddress(data))
 

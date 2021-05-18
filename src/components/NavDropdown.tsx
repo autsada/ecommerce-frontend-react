@@ -4,7 +4,6 @@ import Button from './Button'
 import { useAppSelector } from '../store/store'
 import { selectAuth } from '../store/slices/authSlice'
 import { useSignout } from '../hooks/useSignout'
-import { User } from '../types'
 
 interface Props {
   setOpenDropdown: Dispatch<SetStateAction<boolean>>

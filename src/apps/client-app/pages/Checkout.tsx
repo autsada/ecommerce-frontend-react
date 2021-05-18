@@ -37,15 +37,13 @@ const Checkout: React.FC<Props> = () => {
   const [confirmPaymentError, setConfirmPaymentError] = useState('')
   const [processing, setProcessing] = useState(false)
   const [openDialog, setOpenDialog] = useState(false)
-  const [dialogType, setDialogType] = useState<
-    'inform_payment' | 'remove_card' | null
-  >(null)
+  const [dialogType, setDialogType] =
+    useState<'inform_payment' | 'remove_card' | null>(null)
   const [cardToRemove, setCardToRemove] = useState<PaymentMethod | null>(null)
 
   const { data: cart, isLoading } = useCart()
-  const { mutate: checkout, error: checkoutError } = useCheckout(
-    setClientSecret
-  )
+  const { mutate: checkout, error: checkoutError } =
+    useCheckout(setClientSecret)
   const { confirmPayment } = useConfirmCardPayment({
     setProcessing,
     setSucceeded,
@@ -80,12 +78,12 @@ const Checkout: React.FC<Props> = () => {
   useEffect(() => {
     // As soon as the page loads, call the checkout endpoint
     checkout()
-  }, [])
+  }, [checkout])
 
   // If checkout error on the first render then try again
   useEffect(() => {
     if (checkoutError) checkout()
-  }, [checkoutError])
+  }, [checkoutError, checkout])
 
   // Set type of card that will be used
   useEffect(() => {
@@ -112,7 +110,7 @@ const Checkout: React.FC<Props> = () => {
       setDialogType('inform_payment')
       reset()
     }
-  }, [succeeded])
+  }, [succeeded, reset])
 
   const handleClickBtn = () => {
     if (btnRef && btnRef.current) btnRef.current.click()

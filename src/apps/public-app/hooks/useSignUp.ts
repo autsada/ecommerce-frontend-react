@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from 'react-query'
 import axios from 'axios'
 
 import { useAppDispatch } from '../../../store/store'
+import { setAuth } from '../../../store/slices/authSlice'
 import { setModal } from '../../../store/slices/modalSlice'
 import { User, SignupData } from '../../../types'
 
@@ -25,8 +26,8 @@ export const useSignUp = () => {
         withCredentials: true,
       }).then((res) => res.data),
     {
-      onSuccess: () => {
-        queryClient.invalidateQueries('user')
+      onSuccess: (res) => {
+        dispatch(setAuth(res))
         queryClient.invalidateQueries('cart')
         dispatch(setModal('close'))
       },

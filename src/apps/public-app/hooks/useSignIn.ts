@@ -27,13 +27,9 @@ export const useSignIn = () => {
       }).then((res) => res.data),
     {
       onSuccess: (res) => {
-        // disPatch(setAuth({ user: res.user, accessToken: res.accessToken }))
-        queryClient.invalidateQueries('user')
-        // queryClient.invalidateQueries('cart')
+        disPatch(setAuth(res))
+        queryClient.invalidateQueries('cart')
         disPatch(setModal('close'))
-      },
-      onError: () => {
-        disPatch(setAuth({ user: undefined, accessToken: undefined }))
       },
     }
   )

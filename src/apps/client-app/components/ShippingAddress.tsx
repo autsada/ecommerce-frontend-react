@@ -29,15 +29,6 @@ const ShippingAddress: React.FC<Props> = ({
 
   const history = useHistory()
 
-  // useEffect(() => {
-  //   if (isSuccess)
-  //     // Call checkout endpoint
-  //     history.push({
-  //       pathname: '/payment/checkout',
-  //       state: cart,
-  //     })
-  // }, [isSuccess])
-
   const handleSelectAddress = () => {
     if (!cart) return
 

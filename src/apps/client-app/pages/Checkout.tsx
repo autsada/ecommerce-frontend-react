@@ -80,11 +80,6 @@ const Checkout: React.FC<Props> = () => {
     checkout()
   }, [checkout])
 
-  // If checkout error on the first render then try again
-  useEffect(() => {
-    if (checkoutError) checkout()
-  }, [checkoutError, checkout])
-
   // Set type of card that will be used
   useEffect(() => {
     if (cards?.paymentMethods && cards.paymentMethods.length > 0) {

@@ -196,6 +196,7 @@ const ProductDetail: React.FC<Props> = () => {
           header='Added to cart'
           cartItem={{
             ...addedCartItem,
+            quantity,
             title: product.title,
             image_url: product.image_url,
           }}
